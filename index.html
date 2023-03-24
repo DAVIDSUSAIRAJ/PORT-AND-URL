@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port and url</title>
+</head>
+<body>
+    <script>
+
+        
+
+//USE IMPERATIVE HADNDLE EXAMPLE
+https://codesandbox.io/s/magical-shockley-ymesj3?file=/src/App.js
+
+//PROMISE EXAMPLE
+https://codesandbox.io/s/pedantic-danny-w4q2d9?file=/src/App.js
+//HOOK WORK FLOW
+https://codesandbox.io/s/jovial-joana-bk81v0?file=/src/Child.js		
+
+
+
+
+
+//Oru custom attribute Name la mutiple times vandhaal particular id vanchu eppadi get panradhunu keela irukkiradhu 
+           document.querySelector('.port_aggrid').style.pointerEvents = 'none';
+		let getelem = document.querySelector('.ag-center-cols-container');
+		let elem = getelem.querySelector('[row-id="' + id + '"]');//[row-id = 23454] we need within string so '[row-id = 23454]'
+		if (elem !== null) {
+			elem.style.pointerEvents = 'visible';
+		}
+
+
+//cellRendererFramework eppadi use panradhu?? ex below;
+{
+		headerName: 'Port Color',
+		field: 'portcolor',
+		editable: true,
+		minWidth: 110,
+		maxWidth: 110,
+		sortable: true,
+		cellEditor: 'colorpicker',
+		cellRendererFramework: params => (
+			<div
+				style={{
+					background: params.value ? `rgba(${params.value})` : `rgba(0,0,0)`,
+					border: '1px solid #9d9d9d',
+					position: 'relative',
+					left: '30px',
+					top: '1px',
+					width: '21px',
+					borderRadius: '50%',
+					height: '20px'
+				}}
+			/>
+		)
+	},
+
+
+
+//this is for ag-grid table
+//afterGuiAttached: naama editing start aagumpodhu call aagum;
+//isCancelAfterEnd: edit stop aagumpodhu call aagum ; return false kodutthal naama change panna value set aagum,
+// return true nu kodutthal latest change ah remove pannittu, old value set aagum;
+//getValue: get value value enbadu change panra value va edutthu adha return pannanum;
+
+
+    useImperativeHandle(ref, () => {
+        return {
+            getValue: () => {
+                return hexToRgb(selectedcolor);
+            },
+            isCancelAfterEnd: () => {
+                return !hexToRgb(selectedcolor);
+            },
+            afterGuiAttached: () => {
+                if (!props.value) {
+                    return;
+                }
+                setselectedcolor(RgbToHex(props.value));
+            }
+        };
+    });
+    </script>
+    
+</body>
+</html>
